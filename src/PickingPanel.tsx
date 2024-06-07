@@ -172,7 +172,7 @@ const PickingPanel = ({selectedUser, users} : Props) => {
         setCarriers(newCarriers);
     };
     function completeLine(line: Line, completedQuantity: number) {
-        line.quantityCompleted = completedQuantity
+        // line.quantityCompleted = completedQuantity
         axios.post(`/picking2wmphs/completeLine`, {line: line, orderId: (receivedOrder) ? receivedOrder.id : -1})
             .then(response => {
                 resetIsProceeding()
@@ -222,7 +222,7 @@ const PickingPanel = ({selectedUser, users} : Props) => {
                     fontSize: "45px",
                     color: "white",
                     backgroundColor: "#2d2d2d",
-                    height: "40%",
+                    height: "30%",
                     borderRadius: 5,
                     margin: "7px",
                     padding: "20px",
@@ -238,7 +238,7 @@ const PickingPanel = ({selectedUser, users} : Props) => {
                 {processMessage}
             </Grid>
             <Grid sx={{backgroundColor:"#2d2d2d", height: "42%", borderRadius: 5, margin: "7px", padding: "5px"}} container>
-                <Grid container>
+                <Grid container sx={{height: "50%"}}>
                     {carriers && (
                         carriers.sort((a, b) => a.id - b.id).slice(0, 3).map((carrier, index) => {
                             return (
@@ -256,7 +256,7 @@ const PickingPanel = ({selectedUser, users} : Props) => {
                                     <Grid container sx={{ display: "flex", justifyContent: "center", alignItems: "center", width: "100%", height: "45%" }}>
                                         <Grid container sx={{ display: "flex", justifyContent: "center", alignItems: "center", width: "50%", backgroundColor: "#2d2d2d", borderRadius: 5, margin: "2px", height: "100%",
                                             color:"white", fontSize:"25px", textAlign:"center"}}>
-                                            <ContainedButton sx={{width: "100%",height:"100%", fontSize: "20px", borderRadius: 5, marginRight: "0px", color: "white"}}
+                                            <ContainedButton sx={{width: "100%",height:"100%", fontSize: "25px", borderRadius: 5, marginRight: "0px", color: "white"}}
                                                              label={carrier.toComplete ? String(carrier.toComplete) : ''}
                                                              disabled={!carrier.toComplete || carrier.isProceeding}
                                                              onClick={()=>{
@@ -275,7 +275,7 @@ const PickingPanel = ({selectedUser, users} : Props) => {
                         })
                         )}
                 </Grid>
-                <Grid container>
+                <Grid container sx={{height: "50%"}}>
                     {carriers && (
                         carriers.sort((a, b) => a.id - b.id).slice(3, 6).map((carrier, index) => {
                             return (
@@ -292,7 +292,7 @@ const PickingPanel = ({selectedUser, users} : Props) => {
                                         <Grid container sx={{ display: "flex", justifyContent: "center", alignItems: "center", width: "100%", height: "45%" }}>
                                             <Grid container sx={{ display: "flex", justifyContent: "center", alignItems: "center", width: "50%", backgroundColor: "#2d2d2d", borderRadius: 5, margin: "2px", height: "100%",
                                                 color:"white", fontSize:"25px", textAlign:"center"}}>
-                                                <ContainedButton sx={{width: "100%", height:"100%", fontSize: "20px", borderRadius: 5, marginRight: "0px", color: "white"}}
+                                                <ContainedButton sx={{width: "100%", height:"100%", fontSize: "25px", borderRadius: 5, marginRight: "0px", color: "white"}}
                                                                  label={carrier.toComplete ? String(carrier.toComplete) : ''}
                                                                  disabled={!carrier.toComplete || carrier.isProceeding}
                                                                  onClick={()=>{

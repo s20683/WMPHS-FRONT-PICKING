@@ -30,7 +30,7 @@ const MainPanel = () => {
     return (
         <Grid container sx={{
             height: "75vh",
-            width: "65%",
+            width: "75%",
             backgroundColor:"#E8E8E8",
             padding: "10px",
             borderRadius: 5,
