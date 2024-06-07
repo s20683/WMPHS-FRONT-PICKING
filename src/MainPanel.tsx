@@ -8,7 +8,7 @@ export interface User{
     name: string;
 }
 const MainPanel = () => {
-    const [selectedUser, setSelectedUser] = useState<number>(1)
+    const [selectedUser, setSelectedUser] = useState<number>(-1)
     const [users, setUsers] = useState<User[]>([])
 
     function loadUsers(){
@@ -72,7 +72,7 @@ const MainPanel = () => {
                         </Select>
                     </Grid>
                 </Grid> :
-                <PickingPanel selectedUser={selectedUser} users={users}/>
+                <PickingPanel setSelectedUser={setSelectedUser} selectedUser={selectedUser} users={users}/>
             }
         </Grid>
         );

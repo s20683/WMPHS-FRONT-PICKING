@@ -8,6 +8,7 @@ import Swal, { SweetAlertResult } from 'sweetalert2';
 
 interface Props {
     selectedUser: number;
+    setSelectedUser: (id: number) => void;
     users: User[];
 }
 export interface Order {
@@ -36,7 +37,7 @@ export interface Line{
     productLocation: string;
     carrierId: number;
 }
-const PickingPanel = ({selectedUser, users} : Props) => {
+const PickingPanel = ({selectedUser, users, setSelectedUser} : Props) => {
     const selectedUserInfo = users.find((user) => user.id === selectedUser);
     const [receivedOrder, setReceivedOrder] = useState<Order | null>(null);
     const [carriers, setCarriers] = useState<Carrier[]>([])
@@ -191,12 +192,31 @@ const PickingPanel = ({selectedUser, users} : Props) => {
     return (
         <>
             <Grid container>
-                <Grid item xs={4} sx={{ height: "40px", fontSize: "15px",color: "white", margin:"7px", backgroundColor: "#2d2d2d", padding:"10px", borderRadius: 5}}>
+                <Grid item xs={1} sx={{ height: "40px", fontSize: "15px",color: "white", margin:"7px", backgroundColor: "#2d2d2d", borderRadius: 5}}>
+                    <ContainedButton
+                        sx={{
+                            fontSize: "12px",
+                            borderRadius: 5,
+                            color: "white",
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            height: "100%",
+                            width: "100%"
+                        }}
+                        label={'Wyloguj'}
+                        onClick={() => {
+                            setSelectedUser(-1)
+                        }}
+                    />
+                </Grid>
+
+                <Grid item xs={3} sx={{ height: "40px", fontSize: "15px",color: "white", margin:"7px", backgroundColor: "#2d2d2d", padding:"10px", borderRadius: 5}}>
                     <Grid container>
-                        <Grid item xs={7}>
+                        <Grid item xs={6}>
                             Użytkownik: {selectedUserInfo && selectedUserInfo.name}
                         </Grid>
-                        <Grid item xs={5}>
+                        <Grid item xs={4}>
                             Zlecenie: {receivedOrder && receivedOrder.id}
                         </Grid>
                     </Grid>
