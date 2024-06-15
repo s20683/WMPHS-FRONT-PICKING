@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {Grid} from "@mui/material";
 import {User} from "./MainPanel";
 import ContainedButton from "./components/ContainedButton";
@@ -140,6 +140,7 @@ const PickingPanel = ({selectedUser, users, setSelectedUser} : Props) => {
                 axios.post(`/picking2wmphs/setCarrierBarcode/${id}/${barcode}`)
                     .then(response => {
                         console.log(response.data);
+                        setMsg(response.data.errorMessage)
                         if (receivedOrder) {
                             loadCarriers(receivedOrder.id);
                         }
